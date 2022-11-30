@@ -4,6 +4,8 @@
 import UIKit
 
 class WatchListViewController: UIViewController {
+    private var searchTimer: Timer?
+
     // MARK: - Controller lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +43,32 @@ extension WatchListViewController: UISearchResultsUpdating {
               !query.trimmingCharacters(in: .whitespaces).isEmpty
         else { return }
 
-        resultsVC.update(with: ["GOOG"])
+        searchTimer?.invalidate()
+
+        searchTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: { _ in
+            APIManager.shared.search(query: query) { result in
+                switch result {
+                case .success(let response):
+                    DispatchQueue.main.async {
+                        resultsVC.update(with: response.result)
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        resultsVC.update(with: [])
+                    }
+                    print(error)
+                }
+            }
+        })
     }
 }
 
 extension WatchListViewController: SearchResultsViewControllerDelegate {
-    func searchResultViewControllerDidSelect(searchResult: String) {
-        // present stock details for given selection
+    func searchResultViewControllerDidSelect(searchResult: SearchResult) {
+        navigationItem.searchController?.searchBar.resignFirstResponder()
+        let viewController = StockDetailsViewController()
+        let navVC = UINavigationController(rootViewController: viewController)
+        viewController.title = searchResult.description
+        present(navVC, animated: true)
     }
 }
