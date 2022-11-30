@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -17,19 +17,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="FMQ-dY-GrJ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="sYN-aB-HJu">
                                 <rect key="frame" x="132" y="373" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="E9w-NV-JA2"/>
-                                    <constraint firstAttribute="width" constant="150" id="PX6-t9-sTI"/>
+                                    <constraint firstAttribute="width" constant="150" id="0eY-3t-NYI"/>
+                                    <constraint firstAttribute="height" constant="150" id="A0L-Y2-F4f"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="FMQ-dY-GrJ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="B79-UE-VLQ"/>
-                            <constraint firstItem="FMQ-dY-GrJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Mtb-OK-8xU"/>
+                            <constraint firstItem="sYN-aB-HJu" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="QPt-QC-JXQ"/>
+                            <constraint firstItem="sYN-aB-HJu" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="qPm-BB-tfS"/>
                         </constraints>
                     </view>
                 </viewController>
