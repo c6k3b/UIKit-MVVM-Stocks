@@ -19,6 +19,7 @@
 		005E11E32937A915009ADFEF /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E11E22937A915009ADFEF /* PersistanceManager.swift */; };
 		005E11E52937A923009ADFEF /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E11E42937A923009ADFEF /* HapticsManager.swift */; };
 		005E11E82937BE4A009ADFEF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E11E72937BE4A009ADFEF /* Extensions.swift */; };
+		005E11EA2937C151009ADFEF /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E11E92937C151009ADFEF /* SearchResultsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		005E11E22937A915009ADFEF /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
 		005E11E42937A923009ADFEF /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		005E11E72937BE4A009ADFEF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		005E11E92937C151009ADFEF /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				005E11CB2937A1EA009ADFEF /* LaunchScreen.storyboard */,
+				005E11E92937C151009ADFEF /* SearchResultsTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				005E11EA2937C151009ADFEF /* SearchResultsTableViewCell.swift in Sources */,
 				005E11E52937A923009ADFEF /* HapticsManager.swift in Sources */,
 				005E11DF2937A691009ADFEF /* StockDetailsViewController.swift in Sources */,
 				005E11C52937A1E8009ADFEF /* WatchListViewController.swift in Sources */,
