@@ -12,7 +12,7 @@
 		005E11C52937A1E8009ADFEF /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E11C42937A1E8009ADFEF /* WatchListViewController.swift */; };
 		005E11CA2937A1EA009ADFEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 005E11C92937A1EA009ADFEF /* Assets.xcassets */; };
 		005E11CD2937A1EA009ADFEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005E11CB2937A1EA009ADFEF /* LaunchScreen.storyboard */; };
-		005E11DB2937A661009ADFEF /* TopStoriesNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E11DA2937A661009ADFEF /* TopStoriesNewsViewController.swift */; };
+		005E11DB2937A661009ADFEF /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E11DA2937A661009ADFEF /* NewsViewController.swift */; };
 		005E11DD2937A67F009ADFEF /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E11DC2937A67F009ADFEF /* SearchResultsViewController.swift */; };
 		005E11DF2937A691009ADFEF /* StockDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E11DE2937A691009ADFEF /* StockDetailsViewController.swift */; };
 		005E11E12937A8FD009ADFEF /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E11E02937A8FD009ADFEF /* APIManager.swift */; };
@@ -32,7 +32,7 @@
 		005E11C92937A1EA009ADFEF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		005E11CC2937A1EA009ADFEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		005E11CE2937A1EA009ADFEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		005E11DA2937A661009ADFEF /* TopStoriesNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoriesNewsViewController.swift; sourceTree = "<group>"; };
+		005E11DA2937A661009ADFEF /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		005E11DC2937A67F009ADFEF /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		005E11DE2937A691009ADFEF /* StockDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsViewController.swift; sourceTree = "<group>"; };
 		005E11E02937A8FD009ADFEF /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				005E11C42937A1E8009ADFEF /* WatchListViewController.swift */,
-				005E11DA2937A661009ADFEF /* TopStoriesNewsViewController.swift */,
+				005E11DA2937A661009ADFEF /* NewsViewController.swift */,
 				005E11DC2937A67F009ADFEF /* SearchResultsViewController.swift */,
 				005E11DE2937A691009ADFEF /* StockDetailsViewController.swift */,
 			);
@@ -281,7 +281,7 @@
 				005E11E52937A923009ADFEF /* HapticsManager.swift in Sources */,
 				005E11DF2937A691009ADFEF /* StockDetailsViewController.swift in Sources */,
 				005E11C52937A1E8009ADFEF /* WatchListViewController.swift in Sources */,
-				005E11DB2937A661009ADFEF /* TopStoriesNewsViewController.swift in Sources */,
+				005E11DB2937A661009ADFEF /* NewsViewController.swift in Sources */,
 				005E11C12937A1E8009ADFEF /* AppDelegate.swift in Sources */,
 				005E11E82937BE4A009ADFEF /* Extensions.swift in Sources */,
 				005E11C32937A1E8009ADFEF /* SceneDelegate.swift in Sources */,
