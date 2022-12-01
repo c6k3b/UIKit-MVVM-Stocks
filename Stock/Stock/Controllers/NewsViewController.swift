@@ -2,6 +2,7 @@
 //  Created by aa on 11/30/22.
 
 import UIKit
+import SafariServices
 
 class NewsViewController: UIViewController {
     enum `Type` {
@@ -17,19 +18,7 @@ class NewsViewController: UIViewController {
     }
 
     // MARK: - Properties
-    private var stories: [NewsStory] = [
-        NewsStory(
-            category: "Tech",
-            datetime: 123,
-            headline: "SOme headline goes here!",
-            id: 123,
-            image: "",
-            related: "related",
-            source: "CNBC",
-            summary: "",
-            url: ""
-        )
-    ]
+    private var stories = [NewsStory]()
     private var type: Type
 
     lazy var tableView: UITableView = {
@@ -69,11 +58,32 @@ class NewsViewController: UIViewController {
     }
 
     private func fetchNews() {
-
+        APIManager.shared.news(for: type) { [weak self] result in
+            switch result {
+                case .success(let stories):
+                    DispatchQueue.main.async {
+                        self?.stories = stories
+                        self?.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
+            }
+        }
     }
 
     private func open(url: URL) {
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true)
+    }
 
+    private func presentFailedToOpenAlert() {
+        let alert = UIAlertController(
+            title: "Unable to Open",
+            message: "We were unable to open the article.",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
+        present(alert, animated: true)
     }
 }
 
@@ -109,5 +119,11 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         // open news story
+        let story = stories[indexPath.row]
+        guard let url = URL(string: story.url) else {
+            presentFailedToOpenAlert()
+            return
+        }
+        open(url: url)
     }
 }
