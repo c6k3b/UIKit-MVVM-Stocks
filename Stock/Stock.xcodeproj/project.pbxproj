@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00206722293A6C8800971C9A /* MarketDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00206721293A6C8800971C9A /* MarketDataResponse.swift */; };
 		005E11C12937A1E8009ADFEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E11C02937A1E8009ADFEF /* AppDelegate.swift */; };
 		005E11C32937A1E8009ADFEF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E11C22937A1E8009ADFEF /* SceneDelegate.swift */; };
 		005E11C52937A1E8009ADFEF /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005E11C42937A1E8009ADFEF /* WatchListViewController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00206721293A6C8800971C9A /* MarketDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataResponse.swift; sourceTree = "<group>"; };
 		005E11BD2937A1E8009ADFEF /* Stock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		005E11C02937A1E8009ADFEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		005E11C22937A1E8009ADFEF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				005E11EB2937CB65009ADFEF /* SearchResponse.swift */,
 				00AEE4C02939276300F0282F /* NewsStory.swift */,
+				00206721293A6C8800971C9A /* MarketDataResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00206722293A6C8800971C9A /* MarketDataResponse.swift in Sources */,
 				005E11EA2937C151009ADFEF /* SearchResultsTableViewCell.swift in Sources */,
 				005E11E52937A923009ADFEF /* HapticsManager.swift in Sources */,
 				005E11DF2937A691009ADFEF /* StockDetailsViewController.swift in Sources */,

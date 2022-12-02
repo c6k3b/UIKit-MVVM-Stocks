@@ -14,10 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func debug() {
-        APIManager.shared.news(for: .company(symbol: "MSFT")) { result in
-            switch result {
-                case .success(let news): print(news.count)
-                case .failure: break
+        APIManager.shared.marketData(for: "AAPL", numberOfDays: 1) { result in
+//            switch result {
+//                case .success(let data):
+//                    let candleSticks = data.candleSticks
+//                case .failure(let error):
+//                    print(error)
             }
         }
     }

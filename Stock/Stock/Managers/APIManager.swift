@@ -30,13 +30,13 @@ final class APIManager {
                 )
             case .company(let symbol):
                 let today = Date()
-                let oneMonthBack = today.addingTimeInterval(-Constants.day * 7)
+                let oneWeekBack = today.addingTimeInterval(-Constants.day * 7)
                 request(
                     url: url(
                         for: .companyNews,
                         queryParams: [
                             "symbol": symbol,
-                            "from":  DateFormatter.newsDateFormatter.string(from: oneMonthBack),
+                            "from":  DateFormatter.newsDateFormatter.string(from: oneWeekBack),
                             "to": DateFormatter.newsDateFormatter.string(from: today)
                         ]
                     ),
@@ -44,6 +44,28 @@ final class APIManager {
                     completion: completion
                 )
         }
+    }
+
+    public func marketData(
+        for symbol: String,
+        numberOfDays: TimeInterval = 7,
+        completion: @escaping (Result<MarketDataResponse, Error>) -> Void
+    ) {
+        let today = Date()
+        let prior = today.addingTimeInterval(-Constants.day * numberOfDays)
+        request(
+            url: url(
+                for: .marketData,
+                queryParams: [
+                    "symbol": symbol,
+                    "resolution": "1",
+                    "from": "\(Int(prior.timeIntervalSince1970))",
+                    "to": "\(Int(today.timeIntervalSince1970))"
+                ]
+            ),
+            expectation: MarketDataResponse.self,
+            completion: completion
+        )
     }
 }
 
@@ -53,6 +75,7 @@ private extension APIManager {
         case search
         case topStories = "news"
         case companyNews = "company-news"
+        case marketData = "stock/candle"
     }
 
     enum APIError: Error {
