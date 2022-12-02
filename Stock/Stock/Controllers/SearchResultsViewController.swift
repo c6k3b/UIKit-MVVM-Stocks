@@ -12,28 +12,23 @@ class SearchResultsViewController: UIViewController {
 
     private var results: [SearchResult] = []
 
-    private let tableView: UITableView = {
-        let table = UITableView()
-        table.register(SearchResultsTableViewCell.self, forCellReuseIdentifier: SearchResultsTableViewCell.identifier)
-        table.isHidden = true
-        return table
-    }()
+    private lazy var tableView: UITableView = {
+        $0.isHidden = true
+        $0.register(SearchResultsTableViewCell.self, forCellReuseIdentifier: SearchResultsTableViewCell.identifier)
+        $0.delegate = self
+        $0.dataSource = self
+        return $0
+    }(UITableView())
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        setUpTable()
+        view.addSubview(tableView)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
-    }
-
-    private func setUpTable() {
-        view.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
     }
 
     public func update(with results: [SearchResult]) {
