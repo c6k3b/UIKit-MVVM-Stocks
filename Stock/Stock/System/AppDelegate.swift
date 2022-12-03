@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                    let candleSticks = data.candleSticks
 //                case .failure(let error):
 //                    print(error)
-            }
+//            }
         }
     }
 }

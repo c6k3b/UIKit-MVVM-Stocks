@@ -8,13 +8,17 @@ class WatchListViewController: UIViewController {
     private var searchTimer: Timer?
     private var panel: FloatingPanelController?
 
+    static var maxChangeWidth: CGFloat = 0
+
     // model
     private var watchlistMap: [String: [CandleStick]] = [:]
 
     // viewModel
-    private var viewModel: [String] = []
+    private var viewModels: [WatchListTableViewCell.ViewModel] = []
 
     private lazy var tableView: UITableView = {
+        $0.rowHeight = WatchListTableViewCell.preferredHeight
+        $0.register(WatchListTableViewCell.self, forCellReuseIdentifier: WatchListTableViewCell.identifier)
         $0.delegate = self
         $0.dataSource = self
         return $0
@@ -29,6 +33,11 @@ class WatchListViewController: UIViewController {
         view.addSubview(tableView)
         fetchWatchlistData()
         setUpFloatingPanel()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
     }
 
     // MARK: - Private
@@ -49,8 +58,44 @@ class WatchListViewController: UIViewController {
             }
         }
         group.notify(queue: .main) { [weak self] in
+            self?.createViewModels()
             self?.tableView.reloadData()
         }
+    }
+
+    private func createViewModels() {
+        var viewModels = [WatchListTableViewCell.ViewModel]()
+        for (symbol, candleSticks) in watchlistMap {
+            let changePercentage = getChangePercentage(symbol: symbol, data: candleSticks)
+            viewModels.append(.init(
+                symbol: symbol,
+                companyName: UserDefaults.standard.string(forKey: symbol) ?? "Company",
+                price: getLatestClosingPrice(from: candleSticks),
+                changeColor: changePercentage < 0 ? .systemRed : .systemGreen,
+                changePercentage: .percentage(from: changePercentage),
+                chartViewModel: .init(
+                    data: candleSticks.reversed().map { $0.close },
+                    showLegend: false,
+                    showAxis: false
+                )
+            ))
+        }
+        self.viewModels = viewModels
+    }
+
+    private func getChangePercentage(symbol: String, data: [CandleStick]) -> Double {
+        let latestDate = data[0].date
+        guard let latestClose = data.first?.close,
+              let priorClose =  data.first(where: { !Calendar.current.isDate($0.date, inSameDayAs: latestDate) })?.close
+        else { return 0 }
+
+        let difference = 1 - priorClose / latestClose
+        return difference
+    }
+
+    private func getLatestClosingPrice(from data: [CandleStick]) -> String {
+        guard let closingPrice = data.first?.close else { return "" }
+        return .formatted(number: closingPrice)
     }
 
     private func setUpFloatingPanel() {
@@ -128,15 +173,27 @@ extension WatchListViewController: FloatingPanelControllerDelegate {
 
 extension WatchListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return watchlistMap.count
+        return viewModels.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: WatchListTableViewCell.identifier) as? WatchListTableViewCell
+        else { fatalError("cell not configured") }
+        cell.delegate = self
+        cell.configure(with: viewModels[indexPath.row])
+//        cell.layoutIfNeeded()
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         // open details for selection
+    }
+}
+
+extension WatchListViewController: WatchListTableViewCellDelegate {
+    func didUpdateMaxWidth() {
+        // Optimize: Only refresh rows prior to current row that changes the max width
+        tableView.reloadData()
     }
 }
