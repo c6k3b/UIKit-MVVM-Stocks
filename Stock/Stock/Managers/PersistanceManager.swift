@@ -30,7 +30,14 @@ final class PersistanceManager {
     public func addToWatchList() {
     }
 
-    public func removeFromWatchList() {
+    public func removeFromWatchList(symbol: String) {
+        var newList = [String]()
+        userDefaults.set(nil, forKey: symbol)
+        
+        for item in watchlist where item != symbol {
+            newList.append(item)
+        }
+        userDefaults.set(newList, forKey: Constants.watchlistKey)
     }
 
     private func setUpDefaults() {

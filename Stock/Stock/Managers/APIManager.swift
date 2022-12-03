@@ -100,7 +100,7 @@ private extension APIManager {
         }
         queryItems.append(.init(name: "token", value: Constants.apiKey))
         urlString += "?" + queryItems.map { "\($0.name)=\($0.value ?? "")" }.joined(separator: "&")
-        print("\n\(urlString)\n")
+
         return URL(string: urlString)
     }
 

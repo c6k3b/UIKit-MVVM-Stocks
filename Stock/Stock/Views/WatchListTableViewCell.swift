@@ -35,7 +35,7 @@ class WatchListTableViewCell: UITableViewCell {
 
     private let priceLabel: UILabel = {
         $0.textAlignment = .right
-        $0.font = .systemFont(ofSize: 15, weight: .regular)
+        $0.font = .systemFont(ofSize: 16, weight: .medium)
         return $0
     }(UILabel())
 
