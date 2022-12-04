@@ -23,12 +23,11 @@ class NewsHeaderView: UITableViewHeaderFooterView {
         return $0
     }(UILabel())
 
-    private lazy var button: UIButton = {
+    lazy var button: UIButton = {
         $0.setTitle("+ Watchlist", for: .normal)
-        $0.backgroundColor = .systemBlue
         $0.setTitleColor(.white, for: .normal)
+        $0.backgroundColor = .systemBlue
         $0.layer.cornerRadius = 8
-//        $0.layer.masksToBounds = true
         $0.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         return $0
     }(UIButton())

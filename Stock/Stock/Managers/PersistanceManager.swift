@@ -4,6 +4,7 @@
 import Foundation
 
 final class PersistanceManager {
+    // MARK: - Properties
     static let shared = PersistanceManager()
     private let userDefaults: UserDefaults = .standard
 
@@ -27,6 +28,10 @@ final class PersistanceManager {
         return userDefaults.stringArray(forKey: Constants.watchlistKey) ?? []
     }
 
+    public func watchListContains(symbol: String) -> Bool {
+        return watchlist.contains(symbol)
+    }
+
     public func addToWatchList(symbol: String, companyName: String) {
         var current = watchlist
         current.append(symbol)
@@ -46,6 +51,7 @@ final class PersistanceManager {
         userDefaults.set(newList, forKey: Constants.watchlistKey)
     }
 
+    // MARK: - Private
     private func setUpDefaults() {
         let map: [String: String] = [
             "AAPL": "Apple Inc",
