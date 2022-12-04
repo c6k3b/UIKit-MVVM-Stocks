@@ -68,6 +68,6 @@ extension StockDetailHeaderView: UICollectionViewDelegateFlowLayout, UICollectio
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: width / 2, height: 100 / 2)
+        return CGSize(width: width / 2, height: 100 / 3)
     }
 }
