@@ -8,6 +8,7 @@ final class APIManager {
 
     private init() {}
 
+    // MARK: - Public
     public func search(query: String, completion: @escaping (Result<SearchResponse, Error>) -> Void) {
         guard let safeQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         request(
@@ -67,6 +68,20 @@ final class APIManager {
             completion: completion
         )
     }
+
+    public func financialMetrics(
+        for symbol: String,
+        completion: @escaping (Result<FinancialMetricsResponse, Error>) -> Void
+    ) {
+        request(
+            url: url(
+                for: .financials,
+                queryParams: ["symbol": symbol, "metric": "all"]
+            ),
+            expectation: FinancialMetricsResponse.self,
+            completion: completion
+        )
+    }
 }
 
 // MARK: - Private Helpers
@@ -76,6 +91,7 @@ private extension APIManager {
         case topStories = "news"
         case companyNews = "company-news"
         case marketData = "stock/candle"
+        case financials = "stock/metric"
     }
 
     enum APIError: Error {
