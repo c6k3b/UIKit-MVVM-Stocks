@@ -5,16 +5,16 @@ import UIKit
 import FloatingPanel
 
 class WatchListViewController: UIViewController {
+    // MARK: - Properties
+    private var watchlistMap: [String: [CandleStick]] = [:]
+    private var viewModels: [WatchListTableViewCell.ViewModel] = []
+
     private var searchTimer: Timer?
     private var panel: FloatingPanelController?
+    private var observer: NSObjectProtocol?
 
+    // MARK: - UI Components
     static var maxChangeWidth: CGFloat = 0
-
-    // model
-    private var watchlistMap: [String: [CandleStick]] = [:]
-
-    // viewModel
-    private var viewModels: [WatchListTableViewCell.ViewModel] = []
 
     private lazy var tableView: UITableView = {
         $0.rowHeight = WatchListTableViewCell.preferredHeight
@@ -24,15 +24,18 @@ class WatchListViewController: UIViewController {
         return $0
     }(UITableView())
 
+
     // MARK: - Controller lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpTitleView()
-        setUpSearchController()
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)
+
+        setUpTitleView()
+        setUpSearchController()
         fetchWatchlistData()
         setUpFloatingPanel()
+        setUpObserver()
     }
 
     override func viewDidLayoutSubviews() {
@@ -41,11 +44,17 @@ class WatchListViewController: UIViewController {
     }
 
     // MARK: - Private
+    private func setUpObserver() {
+        observer = NotificationCenter.default.addObserver(forName: .didAddToWatchList, object: nil, queue: .main, using: { [weak self] _ in
+            self?.viewModels.removeAll()
+            self?.fetchWatchlistData()
+        })
+    }
+
     private func fetchWatchlistData() {
         let symbols = PersistanceManager.shared.watchlist
         let group = DispatchGroup()
-        for symbol in symbols {
-            // fetch market data
+        for symbol in symbols where watchlistMap[symbol] == nil {
             group.enter()
             APIManager.shared.marketData(for: symbol) { [weak self] result in
                 defer { group.leave() }
@@ -158,7 +167,10 @@ extension WatchListViewController: UISearchResultsUpdating {
 extension WatchListViewController: SearchResultsViewControllerDelegate {
     func searchResultViewControllerDidSelect(searchResult: SearchResult) {
         navigationItem.searchController?.searchBar.resignFirstResponder()
-        let viewController = StockDetailsViewController()
+        let viewController = StockDetailsViewController(
+            symbol: searchResult.displaySymbol,
+            companyName: searchResult.description
+        )
         let navVC = UINavigationController(rootViewController: viewController)
         viewController.title = searchResult.description
         present(navVC, animated: true)
@@ -188,6 +200,14 @@ extension WatchListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         // open details for selection
+        let viewModel = viewModels[indexPath.row]
+        let vc = StockDetailsViewController(
+            symbol: viewModel.symbol,
+            companyName: viewModel.companyName,
+            candleStickData: watchlistMap[viewModel.symbol] ?? []
+        )
+        let navigationVC = UINavigationController(rootViewController: vc)
+        present(navigationVC, animated: true)
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

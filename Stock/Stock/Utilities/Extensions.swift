@@ -3,6 +3,11 @@
 
 import UIKit
 
+// MARK: - Notifications
+extension Notification.Name {
+    static let didAddToWatchList = Notification.Name("didAddToWatchList")
+}
+
 // MARK: - NumberFormatter
 extension NumberFormatter {
     static let percentageFormatter: NumberFormatter = {
