@@ -7,11 +7,12 @@ protocol SearchResultsViewControllerDelegate: AnyObject {
     func searchResultViewControllerDidSelect(searchResult: SearchResult)
 }
 
-class SearchResultsViewController: UIViewController {
+final class SearchResultsViewController: UIViewController {
+    // MARK: - Properties
     weak var delegate: SearchResultsViewControllerDelegate?
-
     private var results: [SearchResult] = []
 
+    // MARK: - UI Components
     private lazy var tableView: UITableView = {
         $0.isHidden = true
         $0.register(SearchResultsTableViewCell.self, forCellReuseIdentifier: SearchResultsTableViewCell.identifier)
@@ -20,6 +21,7 @@ class SearchResultsViewController: UIViewController {
         return $0
     }(UITableView())
 
+    // MARK: - Controller lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -31,13 +33,14 @@ class SearchResultsViewController: UIViewController {
         tableView.frame = view.bounds
     }
 
-    public func update(with results: [SearchResult]) {
+    func update(with results: [SearchResult]) {
         self.results = results
         tableView.isHidden = results.isEmpty
         tableView.reloadData()
     }
 }
 
+// MARK: - Delegates
 extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return results.count

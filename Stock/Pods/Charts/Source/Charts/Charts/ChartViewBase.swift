@@ -11,7 +11,7 @@
 //  Based on https://github.com/PhilJay/MPAndroidChart/commit/c42b880
 
 import Foundation
-import CoreGraphics
+import CoreGraphics // swiftlint:disable all
 
 #if !os(OSX)
     import UIKit

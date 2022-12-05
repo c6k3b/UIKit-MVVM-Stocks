@@ -4,24 +4,12 @@
 import UIKit
 import SDWebImage
 
-class NewsStoryTableViewCell: UITableViewCell {
+final class NewsStoryTableViewCell: UITableViewCell {
+    // MARK: - Properties
     static let identifier = "NewsStoryTableViewCell"
     static let preferredHeight: CGFloat = 140
 
-    struct ViewModel {
-        let source: String
-        let headline: String
-        let dateString: String
-        let imageURL: URL?
-
-        init(model: NewsStory) {
-            self.source = model.source
-            self.headline = model.headline
-            self.dateString = .string(from: model.datetime)
-            self.imageURL = URL(string: model.image)
-        }
-    }
-
+    // MARK: - UI Components
     private let sourceLabel: UILabel = {
         $0.font = .systemFont(ofSize: 14, weight: .medium)
         return $0
@@ -48,6 +36,7 @@ class NewsStoryTableViewCell: UITableViewCell {
         return $0
     }(UIImageView())
 
+    // MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .secondarySystemBackground
@@ -75,7 +64,12 @@ class NewsStoryTableViewCell: UITableViewCell {
         sourceLabel.sizeToFit()
         sourceLabel.frame = CGRect(x: separatorInset.left, y: 4, width: availableWidth, height: sourceLabel.height)
 
-        headlineLabel.frame = CGRect(x: separatorInset.left, y: sourceLabel.bottom + 5, width: availableWidth, height: contentView.height - sourceLabel.bottom - dateLabel.height - 10)
+        headlineLabel.frame = CGRect(
+            x: separatorInset.left,
+            y: sourceLabel.bottom + 5,
+            width: availableWidth,
+            height: contentView.height - sourceLabel.bottom - dateLabel.height - 10
+        )
     }
 
     override func prepareForReuse() {
@@ -86,11 +80,28 @@ class NewsStoryTableViewCell: UITableViewCell {
         storyImageView.image = nil
     }
 
-    public func configure(with viewModel: ViewModel) {
+    func configure(with viewModel: ViewModel) {
         headlineLabel.text = viewModel.headline
         sourceLabel.text = viewModel.source
         dateLabel.text = viewModel.dateString
         storyImageView.sd_setImage(with: viewModel.imageURL)
 //        storyImageView.setImage(with: viewModel.imageURL)
+    }
+}
+
+// MARK: - ViewModel
+extension NewsStoryTableViewCell {
+    struct ViewModel {
+        let source: String
+        let headline: String
+        let dateString: String
+        let imageURL: URL?
+
+        init(model: NewsStory) {
+            self.source = model.source
+            self.headline = model.headline
+            self.dateString = .string(from: model.datetime)
+            self.imageURL = URL(string: model.image)
+        }
     }
 }

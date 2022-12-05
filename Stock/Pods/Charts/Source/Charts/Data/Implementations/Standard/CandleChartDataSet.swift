@@ -11,7 +11,7 @@
 
 import Foundation
 import CoreGraphics
-
+// swiftlint:disable all
 
 open class CandleChartDataSet: LineScatterCandleRadarChartDataSet, CandleChartDataSetProtocol
 {

@@ -3,9 +3,11 @@
 
 import UIKit
 
-class SearchResultsTableViewCell: UITableViewCell {
+final class SearchResultsTableViewCell: UITableViewCell {
+    // MARK: - Properties
     static let identifier = "SearchResultsTableViewCell"
 
+    // MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
     }

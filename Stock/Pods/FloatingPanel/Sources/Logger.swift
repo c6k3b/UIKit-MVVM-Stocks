@@ -1,5 +1,5 @@
 // Copyright 2018-Present Shin Yamamoto. All rights reserved. MIT license.
-
+// swiftlint:disable all
 import Foundation
 import os.log
 

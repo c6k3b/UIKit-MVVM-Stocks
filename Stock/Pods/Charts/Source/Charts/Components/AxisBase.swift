@@ -14,7 +14,7 @@ import CoreGraphics
 
 /// Base class for all axes
 @objc(ChartAxisBase)
-open class AxisBase: ComponentBase
+open class AxisBase: ComponentBase // swiftlint:disable all
 {
     public override init()
     {

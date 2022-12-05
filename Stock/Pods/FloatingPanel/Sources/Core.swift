@@ -5,7 +5,7 @@ import UIKit
 ///
 /// The presentation model of FloatingPanel
 ///
-class Core: NSObject, UIGestureRecognizerDelegate {
+class Core: NSObject, UIGestureRecognizerDelegate { // swiftlint:disable all
     private weak var ownerVC: FloatingPanelController?
 
     let surfaceView: SurfaceView

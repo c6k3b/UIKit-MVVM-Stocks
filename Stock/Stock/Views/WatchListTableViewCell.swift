@@ -7,20 +7,12 @@ protocol WatchListTableViewCellDelegate: AnyObject {
     func didUpdateMaxWidth()
 }
 
-class WatchListTableViewCell: UITableViewCell {
+final class WatchListTableViewCell: UITableViewCell {
+    // MARK: - Properties
     static let identifier = "WatchListTableViewCell"
     static let preferredHeight: CGFloat = 60
 
     weak var delegate: WatchListTableViewCellDelegate?
-
-    struct ViewModel {
-        let symbol: String
-        let companyName: String
-        let price: String
-        let changeColor: UIColor
-        let changePercentage: String
-        let chartViewModel: StockChartView.ViewModel
-    }
 
     // MARK: - UIComponents
     private let symbolLabel: UILabel = {
@@ -124,7 +116,7 @@ class WatchListTableViewCell: UITableViewCell {
         miniChartView.reset()
     }
 
-    public func configure(with viewModel: ViewModel) {
+    func configure(with viewModel: ViewModel) {
         symbolLabel.text = viewModel.symbol
         nameLabel.text = viewModel.companyName
         priceLabel.text = viewModel.price
@@ -132,5 +124,17 @@ class WatchListTableViewCell: UITableViewCell {
         changeLabel.backgroundColor = viewModel.changeColor
         // configure chart
         miniChartView.configure(with: viewModel.chartViewModel)
+    }
+}
+
+// MARK: - ViewModel
+extension WatchListTableViewCell {
+    struct ViewModel {
+        let symbol: String
+        let companyName: String
+        let price: String
+        let changeColor: UIColor
+        let changePercentage: String
+        let chartViewModel: StockChartView.ViewModel
     }
 }

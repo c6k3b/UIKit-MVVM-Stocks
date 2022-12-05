@@ -11,7 +11,7 @@
 
 import Foundation
 import CoreGraphics
-
+// swiftlint:disable all
 open class BubbleChartDataEntry: ChartDataEntry
 {
     /// The size of the bubble.

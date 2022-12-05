@@ -10,7 +10,7 @@
 //
 
 import Foundation
-
+// swiftlint:disable all
 open class ChartDataEntryBase: NSObject
 {
     /// the y value

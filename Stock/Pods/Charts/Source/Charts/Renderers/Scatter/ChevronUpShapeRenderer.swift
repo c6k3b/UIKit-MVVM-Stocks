@@ -10,7 +10,7 @@
 //
 import Foundation
 import CoreGraphics
-
+// swiftlint:disable all
 open class ChevronUpShapeRenderer : NSObject, ShapeRenderer
 {
     open func renderShape(

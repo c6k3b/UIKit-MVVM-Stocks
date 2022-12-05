@@ -1,7 +1,7 @@
 // Copyright 2018-Present Shin Yamamoto. All rights reserved. MIT license.
 
 import UIKit
-
+// swiftlint:disable all
 /// A view that presents a grabber handle in the surface of a panel.
 @objc(FloatingPanelGrabberView)
 public class GrabberView: UIView {

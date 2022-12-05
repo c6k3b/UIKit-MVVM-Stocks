@@ -4,15 +4,7 @@
 import UIKit
 import Charts
 
-class StockChartView: UIView {
-    // MARK: - Properties
-    struct ViewModel {
-        let data: [Double]
-        let showLegend: Bool
-        let showAxis: Bool
-        let fillColor: UIColor
-    }
-
+final class StockChartView: UIView {
     // MARK: - UIComponents
     private let chartView: LineChartView = {
         $0.setScaleEnabled(true)
@@ -63,5 +55,14 @@ class StockChartView: UIView {
     func reset() {
         chartView.data = nil
     }
+}
 
+// MARK: - ViewModel
+extension StockChartView {
+    struct ViewModel {
+        let data: [Double]
+        let showLegend: Bool
+        let showAxis: Bool
+        let fillColor: UIColor
+    }
 }

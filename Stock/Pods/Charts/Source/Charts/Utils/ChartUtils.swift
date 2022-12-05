@@ -11,7 +11,7 @@
 
 import Foundation
 import CoreGraphics
-
+// swiftlint:disable all
 extension Comparable
 {
     func clamped(to range: ClosedRange<Self>) -> Self

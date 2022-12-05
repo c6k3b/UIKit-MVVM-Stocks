@@ -3,7 +3,7 @@
 import UIKit
 
 // MARK: - CoreGraphics
-
+// swiftlint:disable all
 extension CGFloat {
     /// Returns this value rounded to an logical pixel value by a display scale
     func rounded(by displayScale: CGFloat) -> CGFloat {

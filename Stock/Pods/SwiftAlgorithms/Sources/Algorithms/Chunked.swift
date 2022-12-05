@@ -1,3 +1,4 @@
+// swiftlint:disable all
 //===----------------------------------------------------------------------===//
 //
 // This source file is part of the Swift Algorithms open source project
@@ -13,7 +14,7 @@
 /// predicate.
 ///
 /// Call `lazy.chunked(by:)` on a collection to create an instance of this type.
-public struct ChunkedByCollection<Base: Collection, Subject> {
+public struct ChunkedByCollection<Base: Collection, Subject> { // swiftlint:disable all
   /// The collection that this instance provides a view onto.
   @usableFromInline
   internal let base: Base

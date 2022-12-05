@@ -9,7 +9,7 @@
 //  https://github.com/danielgindi/Charts
 //
 
-import Foundation
+import Foundation // swiftlint:disable all
 
 open class ChartData: NSObject, ExpressibleByArrayLiteral
 {

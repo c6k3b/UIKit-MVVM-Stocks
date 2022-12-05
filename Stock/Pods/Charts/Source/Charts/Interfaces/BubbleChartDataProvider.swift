@@ -11,7 +11,7 @@
 
 import Foundation
 import CoreGraphics
-
+// swiftlint:disable all
 @objc
 public protocol BubbleChartDataProvider: BarLineScatterCandleBubbleChartDataProvider
 {

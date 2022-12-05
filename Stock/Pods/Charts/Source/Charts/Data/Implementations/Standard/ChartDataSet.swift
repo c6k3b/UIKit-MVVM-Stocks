@@ -10,7 +10,7 @@
 //
 
 import Algorithms
-import Foundation
+import Foundation // swiftlint:disable all
 
 /// Determines how to round DataSet index values for `ChartDataSet.entryIndex(x, rounding)` when an exact x-value is not found.
 @objc

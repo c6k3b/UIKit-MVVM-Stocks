@@ -1,5 +1,5 @@
 // Copyright 2018-Present Shin Yamamoto. All rights reserved. MIT license.
-
+// swiftlint:disable all
 import UIKit
 
 /// An interface for generating layout information for a panel.

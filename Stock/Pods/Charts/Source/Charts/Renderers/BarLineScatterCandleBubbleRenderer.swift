@@ -13,7 +13,7 @@ import Foundation
 import CoreGraphics
 
 @objc(BarLineScatterCandleBubbleChartRenderer)
-open class BarLineScatterCandleBubbleRenderer: NSObject, DataRenderer
+open class BarLineScatterCandleBubbleRenderer: NSObject, DataRenderer // swiftlint:disable all
 {
     public let viewPortHandler: ViewPortHandler
 

@@ -1,3 +1,4 @@
+// swiftlint:disable all
 //===----------------------------------------------------------------------===//
 //
 // This source file is part of the Swift Algorithms open source project

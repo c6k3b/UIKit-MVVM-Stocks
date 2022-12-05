@@ -10,7 +10,7 @@
 //
 
 import Foundation
-
+// swiftlint:disable all
 open class CandleChartDataEntry: ChartDataEntry
 {
     /// shadow-high value

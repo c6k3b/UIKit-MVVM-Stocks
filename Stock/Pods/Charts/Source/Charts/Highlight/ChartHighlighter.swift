@@ -12,7 +12,7 @@
 import Algorithms
 import Foundation
 import CoreGraphics
-
+// swiftlint:disable all
 open class ChartHighlighter : NSObject, Highlighter
 {
     /// instance of the data-provider

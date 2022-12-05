@@ -10,7 +10,7 @@
 //
 
 import Foundation
-import CoreGraphics
+import CoreGraphics // swiftlint:disable all
 
 @objc
 public enum ChartEasingOption: Int

@@ -11,7 +11,7 @@
 
 import Foundation
 import CoreGraphics
-
+// swiftlint:disable all
 @objc(ChartFill)
 public protocol Fill
 {

@@ -10,7 +10,7 @@
 //
 
 import Foundation
-
+// swiftlint:disable all
 open class ChartDataEntry: ChartDataEntryBase, NSCopying
 {
     /// the x value

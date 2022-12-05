@@ -10,7 +10,7 @@
 //
 
 import Foundation
-
+// swiftlint:disable all
 /// This formatter is used for passing an array of x-axis labels, on whole x steps.
 @objc(ChartIndexAxisValueFormatter)
 open class IndexAxisValueFormatter: NSObject, AxisValueFormatter

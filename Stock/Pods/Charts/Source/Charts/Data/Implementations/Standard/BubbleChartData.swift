@@ -11,7 +11,7 @@
 
 import Foundation
 import CoreGraphics
-
+// swiftlint:disable all
 open class BubbleChartData: BarLineScatterCandleBubbleChartData
 {
     public required init()

@@ -8,7 +8,7 @@
 //
 //  https://github.com/danielgindi/Charts
 //
-
+// swiftlint:disable all
 import Foundation
 
 /// An interface for providing custom axis Strings.

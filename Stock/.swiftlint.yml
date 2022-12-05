@@ -84,3 +84,5 @@ nesting:
 
 warning_threshold: 1
 
+excluded:
+  - Pods

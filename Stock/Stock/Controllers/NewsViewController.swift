@@ -4,23 +4,12 @@
 import UIKit
 import SafariServices
 
-class NewsViewController: UIViewController {
-    enum `Type` {
-        case topStories
-        case company(symbol: String)
-
-        var title: String {
-            switch self {
-                case .topStories: return "Top Stories"
-                case .company(let symbol): return symbol.uppercased()
-            }
-        }
-    }
-
+final class NewsViewController: UIViewController {
     // MARK: - Properties
     private var stories = [NewsStory]()
     private var type: Type
 
+    // MARK: - UI Components
     lazy var tableView: UITableView = {
         $0.backgroundColor = .clear
         $0.delegate = self
@@ -43,7 +32,7 @@ class NewsViewController: UIViewController {
     // MARK: - Controller lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpTable()
+        view.addSubview(tableView)
         fetchNews()
     }
 
@@ -51,32 +40,32 @@ class NewsViewController: UIViewController {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
+}
 
-    // MARK: - Private Methods
-    private func setUpTable() {
-        view.addSubview(tableView)
-    }
-
-    private func fetchNews() {
-        APIManager.shared.news(for: type) { [weak self] result in
+// MARK: - Private Methods
+private extension NewsViewController {
+    func fetchNews() {
+        APIManager.shared.getNews(for: type) { [weak self] result in
             switch result {
-                case .success(let stories):
-                    DispatchQueue.main.async {
-                        self?.stories = stories
-                        self?.tableView.reloadData()
-                    }
-                case .failure(let error):
-                    print(error)
+            case .success(let stories):
+                DispatchQueue.main.async {
+                    self?.stories = stories
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
             }
         }
     }
 
-    private func open(url: URL) {
-        let vc = SFSafariViewController(url: url)
-        present(vc, animated: true)
+    func open(url: URL) {
+        let viewController = SFSafariViewController(url: url)
+        present(viewController, animated: true)
     }
 
-    private func presentFailedToOpenAlert() {
+    func presentFailedToOpenAlert() {
+        HapticsManager.shared.vibrate(for: .error)
+
         let alert = UIAlertController(
             title: "Unable to Open",
             message: "We were unable to open the article.",
@@ -87,6 +76,22 @@ class NewsViewController: UIViewController {
     }
 }
 
+// MARK: - Helpers
+extension NewsViewController {
+    enum `Type` {
+        case topStories
+        case company(symbol: String)
+
+        var title: String {
+            switch self {
+            case .topStories: return "Top Stories"
+            case .company(let symbol): return symbol.uppercased()
+            }
+        }
+    }
+}
+
+// MARK: - Delegates
 extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stories.count
@@ -102,10 +107,13 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: NewsHeaderView.identifier) as? NewsHeaderView else { return nil }
+        guard let header = tableView.dequeueReusableHeaderFooterView(
+            withIdentifier: NewsHeaderView.identifier
+        ) as? NewsHeaderView
+        else { return nil }
+
         header.configure(with: .init(title: self.type.title, shouldShowAddButton: false))
         return header
-
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -118,7 +126,8 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // open news story
+        HapticsManager.shared.vibrateForSelection()
+
         let story = stories[indexPath.row]
         guard let url = URL(string: story.url) else {
             presentFailedToOpenAlert()

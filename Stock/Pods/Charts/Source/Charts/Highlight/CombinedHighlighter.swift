@@ -12,7 +12,7 @@
 import Algorithms
 import Foundation
 import CoreGraphics
-
+// swiftlint:disable all
 @objc(CombinedChartHighlighter)
 open class CombinedHighlighter: ChartHighlighter
 {

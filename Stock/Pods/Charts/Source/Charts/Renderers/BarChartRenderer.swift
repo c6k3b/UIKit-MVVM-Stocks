@@ -16,7 +16,7 @@ import CoreGraphics
     import UIKit
 #endif
 
-open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
+open class BarChartRenderer: BarLineScatterCandleBubbleRenderer // swiftlint:disable all
 {
     /// A nested array of elements ordered logically (i.e not in visual/drawing order) for use with VoiceOver
     ///

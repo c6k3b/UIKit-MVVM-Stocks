@@ -1,7 +1,7 @@
 // Copyright 2018-Present Shin Yamamoto. All rights reserved. MIT license.
 
 import UIKit
-
+// swiftlint:disable all
 /// A set of methods implemented by the delegate of a panel controller allows the adopting delegate to respond to
 /// messages from the FloatingPanelController class and thus respond to, and in some affect, operations such as
 /// dragging, attracting a panel, layout of a panel and the content, and transition animations.

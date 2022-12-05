@@ -8,7 +8,7 @@
 //
 //  https://github.com/danielgindi/Charts
 //
-
+// swiftlint:disable all
 import Foundation
 
 /// The default value formatter used for all chart components that needs a default

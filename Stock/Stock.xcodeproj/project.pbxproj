@@ -143,12 +143,12 @@
 			isa = PBXGroup;
 			children = (
 				005E11CB2937A1EA009ADFEF /* LaunchScreen.storyboard */,
-				005E11E92937C151009ADFEF /* SearchResultsTableViewCell.swift */,
+				00206725293A807600971C9A /* StockChartView.swift */,
 				00AEE4BE29391A6300F0282F /* NewsHeaderView.swift */,
+				0007554F293CF00F00F8740B /* StockDetailHeaderView.swift */,
+				005E11E92937C151009ADFEF /* SearchResultsTableViewCell.swift */,
 				00AEE4C229392E0D00F0282F /* NewsStoryTableViewCell.swift */,
 				00206723293A7C0B00971C9A /* WatchListTableViewCell.swift */,
-				00206725293A807600971C9A /* StockChartView.swift */,
-				0007554F293CF00F00F8740B /* StockDetailHeaderView.swift */,
 				00075551293CFF5B00F8740B /* MetricCollectionViewCell.swift */,
 			);
 			path = Views;
@@ -197,6 +197,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 005E11D12937A1EA009ADFEF /* Build configuration list for PBXNativeTarget "Stock" */;
 			buildPhases = (
+				00DC3070293E3EA900D4F7DB /* Swiftlint */,
 				8C7BFE0FF23C6AD9D3120BD9 /* [CP] Check Pods Manifest.lock */,
 				005E11B92937A1E8009ADFEF /* Sources */,
 				005E11BA2937A1E8009ADFEF /* Frameworks */,
@@ -258,6 +259,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		00DC3070293E3EA900D4F7DB /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
+		};
 		8C7BFE0FF23C6AD9D3120BD9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

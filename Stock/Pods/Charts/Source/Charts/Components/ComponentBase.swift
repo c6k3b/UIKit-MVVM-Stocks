@@ -11,7 +11,7 @@
 
 import Foundation
 import CoreGraphics
-
+// swiftlint:disable all
 
 /// This class encapsulates everything both Axis, Legend and LimitLines have in common
 @objc(ChartComponentBase)

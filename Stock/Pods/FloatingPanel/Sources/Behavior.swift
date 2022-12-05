@@ -4,7 +4,7 @@ import UIKit
 
 /// An interface for generating behavior information to fine-tune the behavior of a panel.
 @objc
-public protocol FloatingPanelBehavior {
+public protocol FloatingPanelBehavior { // swiftlint:disable all
     /// A floating-point value that determines the rate of oscillation magnitude reduction after the user lifts their finger.
     ///
     /// The oscillation magnitude to attract a panel to an anchor can be adjusted this value between 0.979 and 1.0

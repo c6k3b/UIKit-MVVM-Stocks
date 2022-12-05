@@ -10,7 +10,7 @@
 //
 
 import Foundation
-
+// swiftlint:disable all
 open class CandleChartData: BarLineScatterCandleBubbleChartData
 {
     public required init()

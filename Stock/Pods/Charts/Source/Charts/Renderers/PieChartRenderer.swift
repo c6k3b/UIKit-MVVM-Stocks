@@ -11,7 +11,7 @@
 
 import Foundation
 import CoreGraphics
-
+// swiftlint:disable all
 #if !os(OSX)
     import UIKit
 #endif

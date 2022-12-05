@@ -7,17 +7,14 @@ protocol NewsHeaderViewDelegate: AnyObject {
     func newsHeaderViewDidTapAddButton(_ headerView: NewsHeaderView)
 }
 
-class NewsHeaderView: UITableViewHeaderFooterView {
+final class NewsHeaderView: UITableViewHeaderFooterView {
+    // MARK: - Properties
     static let identifier = "NewsHeaderView"
     static let preferredHeight: CGFloat = 70
 
     weak var delegate: NewsHeaderViewDelegate?
 
-    struct ViewModel {
-        let title: String
-        let shouldShowAddButton: Bool
-    }
-
+    // MARK: - UI Components
     private let label: UILabel = {
         $0.font = .systemFont(ofSize: 32, weight: .medium)
         return $0
@@ -60,13 +57,20 @@ class NewsHeaderView: UITableViewHeaderFooterView {
         label.text = nil
     }
 
-    public func configure(with viewModel: ViewModel) {
+    func configure(with viewModel: ViewModel) {
         label.text = viewModel.title
         button.isHidden = !viewModel.shouldShowAddButton
     }
 
     @objc private func didTapButton() {
-        // call delegate
         delegate?.newsHeaderViewDidTapAddButton(self)
+    }
+}
+
+// MARK: - ViewModel
+extension NewsHeaderView {
+    struct ViewModel {
+        let title: String
+        let shouldShowAddButton: Bool
     }
 }

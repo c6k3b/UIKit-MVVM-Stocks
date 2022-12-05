@@ -3,14 +3,9 @@
 
 import UIKit
 
-class MetricCollectionViewCell: UICollectionViewCell {
+final class MetricCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     static let identifier = "MetricCollectionViewCell"
-
-    struct ViewModel {
-        let name: String
-        let value: String
-    }
 
     // MARK: - UI Components
     private let nameLabel: UILabel = {
@@ -50,5 +45,13 @@ class MetricCollectionViewCell: UICollectionViewCell {
     func configure(with viewModel: ViewModel) {
         nameLabel.text = viewModel.name + ": "
         valueLabel.text = viewModel.value
+    }
+}
+
+// MARK: - ViewModel
+extension MetricCollectionViewCell {
+    struct ViewModel {
+        let name: String
+        let value: String
     }
 }

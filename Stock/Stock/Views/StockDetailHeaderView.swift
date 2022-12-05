@@ -3,7 +3,7 @@
 
 import UIKit
 
-class StockDetailHeaderView: UIView {
+final class StockDetailHeaderView: UIView {
     // MARK: - Properties
     private var metricViewModels = [MetricCollectionViewCell.ViewModel]()
 
@@ -59,15 +59,25 @@ extension StockDetailHeaderView: UICollectionViewDelegateFlowLayout, UICollectio
         return metricViewModels.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         let viewModel = metricViewModels[indexPath.row]
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MetricCollectionViewCell.identifier, for: indexPath) as? MetricCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: MetricCollectionViewCell.identifier,
+            for: indexPath
+        ) as? MetricCollectionViewCell
         else { return UICollectionViewCell() }
         cell.configure(with: viewModel)
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
         return CGSize(width: width / 2, height: 100 / 3)
     }
 }
