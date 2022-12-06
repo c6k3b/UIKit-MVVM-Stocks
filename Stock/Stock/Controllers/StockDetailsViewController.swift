@@ -116,7 +116,7 @@ private extension StockDetailsViewController {
             viewModels.append(.init(name: "10D Vol.", value: "\(metrics.tenDayAverageTradingVolume)"))
         }
 
-        let changePercentage = getChangePercentage(symbol: symbol, data: candleStickData)
+        let changePercentage = candleStickData.getPercentage()
         headerView.configure(
             chartViewModel: .init(
                 data: candleStickData.reversed().map { $0.close },
@@ -128,16 +128,6 @@ private extension StockDetailsViewController {
         )
 
         tableView.tableHeaderView = headerView
-    }
-
-    func getChangePercentage(symbol: String, data: [CandleStick]) -> Double {
-        let latestDate = data[0].date
-        guard let latestClose = data.first?.close,
-              let priorClose = data.first(where: { !Calendar.current.isDate($0.date, inSameDayAs: latestDate) })?.close
-        else { return 0 }
-
-        let difference = 1 - priorClose / latestClose
-        return difference
     }
 
     func fetchNews() {
@@ -197,7 +187,7 @@ extension StockDetailsViewController: UITableViewDelegate, UITableViewDataSource
 extension StockDetailsViewController: NewsHeaderViewDelegate {
     func newsHeaderViewDidTapAddButton(_ headerView: NewsHeaderView) {
         HapticsManager.shared.vibrate(for: .success)
-        
+
         headerView.button.isHidden = true
         PersistanceManager.shared.addToWatchlist(symbol: symbol, companyName: companyName)
 

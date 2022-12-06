@@ -59,6 +59,8 @@ private extension WatchListViewController {
 
     func fetchWatchlistData() {
         let symbols = PersistanceManager.shared.getWatchlist
+        createPlaceholderViewModel()
+
         let group = DispatchGroup()
         for symbol in symbols where watchlistMap[symbol] == nil {
             group.enter()
@@ -81,7 +83,7 @@ private extension WatchListViewController {
     func createViewModels() {
         var viewModels = [WatchListTableViewCell.ViewModel]()
         for (symbol, candleSticks) in watchlistMap {
-            let changePercentage = getChangePercentage(symbol: symbol, data: candleSticks)
+            let changePercentage = candleSticks.getPercentage()
             viewModels.append(.init(
                 symbol: symbol,
                 companyName: UserDefaults.standard.string(forKey: symbol) ?? "Company",
@@ -96,17 +98,30 @@ private extension WatchListViewController {
                 )
             ))
         }
-        self.viewModels = viewModels
+        self.viewModels = viewModels.sorted(by: { $0.symbol < $1.symbol })
     }
 
-    func getChangePercentage(symbol: String, data: [CandleStick]) -> Double {
-        let latestDate = data[0].date
-        guard let latestClose = data.first?.close,
-              let priorClose = data.first(where: { !Calendar.current.isDate($0.date, inSameDayAs: latestDate) })?.close
-        else { return 0 }
-
-        let difference = 1 - priorClose / latestClose
-        return difference
+    func createPlaceholderViewModel() {
+        let symbols = PersistanceManager.shared.getWatchlist
+        symbols.forEach { item in
+            viewModels.append(
+                .init(
+                    symbol: item,
+                    companyName: UserDefaults.standard.string(forKey: item) ?? "Company",
+                    price: "0.00",
+                    changeColor: .systemGreen,
+                    changePercentage: "0.00",
+                    chartViewModel: .init(
+                        data: [],
+                        showLegend: false,
+                        showAxis: false,
+                        fillColor: .clear
+                    )
+                )
+            )
+        }
+        self.viewModels = viewModels.sorted(by: { $0.symbol < $1.symbol })
+        tableView.reloadData()
     }
 
     func getLatestClosingPrice(from data: [CandleStick]) -> String {
